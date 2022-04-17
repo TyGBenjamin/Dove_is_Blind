@@ -1,6 +1,5 @@
 // Require schema and model from mongoose
 const { Schema, mongoose } = require("mongoose");
-const Reaction = require("./Reaction.js");
 
 const reactionSchema = new mongoose.Schema(
   {
@@ -39,7 +38,7 @@ const thoughtSchema = new mongoose.Schema(
     // Use built in date method to get current date
     createdAt: { type: Date, default: Date.now },
     username: [{ type: Schema.Types.ObjectId, ref: "user" }],
-    reactions: [{ type: Schema.Types, ref: "reaction" }],
+    reactions: [{ type: Schema.Types, ref: reactionSchema }],
   },
   {
     // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
