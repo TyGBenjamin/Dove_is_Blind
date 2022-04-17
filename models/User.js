@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
       validator: function (v) {
         return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
       },
-      message: (props) => `${props.text} is not a valid phone number!`,
+      message: (props) => `${props.text} is not a valid email!`,
     },
     required: true,
     trim: true,
@@ -24,11 +24,8 @@ const userSchema = new mongoose.Schema({
   // The type of data is set to 'String' and required is set to false, meaning it will accept null values
   thoughts: [{ type: Schema.Types.ObjectId, ref: "thought" }],
 
-  stockCount: Number,
-  price: Number,
-  inStock: Boolean,
   // Use built in date method to get current date
-  lastAccessed: { type: Date, default: Date.now },
+  freinds: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
 // Using mongoose.model() to compile a model based on the schema 'bookSchema'
