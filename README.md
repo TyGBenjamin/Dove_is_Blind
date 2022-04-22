@@ -64,11 +64,8 @@ MIT
 ## Features
 
 - Node Js
-- NPM
-- NPM Express
-- NPM Mysql2
-- NPM Console.Table
-- NPM DotEnv
+- Express
+- Console.Table
 - Mongodb
 - Mongoose
 
