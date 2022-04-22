@@ -1,12 +1,6 @@
 const { Thought, User } = require("../models");
 
-// getAllThought,
-// getThoughtById,
-// addThought,
-// addReaction,
-// updateThought,
-// removeThought,
-// removeReaction,
+const { Schema, model, Types } = require("mongoose");
 
 module.exports = {
   // Function to get all of the applications by invoking the find() method with no arguments.
@@ -28,7 +22,7 @@ module.exports = {
   },
   // Creates a new application. Accepts a request body with the entire Application object.
   // Because applications are associated with Users, we then update the User who created the app and add the ID of the application to the applications array
-  createThought(req, res) {
+  postThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
         return User.findOneAndUpdate(
@@ -103,7 +97,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove application tag. This method finds the application based on ID. It then updates the tags array associated with the app in question by removing it's tagId from the tags array.
-  removeTag(req, res) {
+  removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { tags: { tagId: req.params.tagId } } },

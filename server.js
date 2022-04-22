@@ -21,7 +21,7 @@ mongodb.connect(
     // Use client.db() constructor to add new db instance
     db = client.db();
     app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
+      console.log(`Social Media API is listening at http://localhost:${port}`);
     });
   }
 );

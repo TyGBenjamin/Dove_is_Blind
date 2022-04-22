@@ -1,5 +1,5 @@
 // Require schema and model from mongoose
-const { Schema, mongoose } = require("mongoose");
+const { Schema, mongoose, Types } = require("mongoose");
 
 const reactionSchema = new mongoose.Schema(
   {
@@ -55,12 +55,6 @@ thoughtSchema
   // Getter
   .get(function () {
     return `${this.reactions.length}`;
-  })
-  // Setter to set the first and last name
-  .set(function (v) {
-    const first = v.split(" ")[0];
-    const last = v.split(" ")[1];
-    this.set({ first, last });
   });
 
 // Using mongoose.model() to compile a model based on the schema 'bookSchema'
