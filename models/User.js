@@ -1,6 +1,5 @@
 // Require schema and model from mongoose
-
-const { Schema, model, Types } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 // Construct a new instance of the schema class
 const userSchema = new Schema(
@@ -14,20 +13,19 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      validate: {
-        validator: function (v) {
-          return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
-        },
-        message: (props) => `${props.text} is not a valid email!`,
-      },
       required: true,
       trim: true,
+      uniquie: true,
+      match: [
+        /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+        "use proper email address",
+      ],
     },
     // The type of data is set to 'String' and required is set to false, meaning it will accept null values
     thoughts: [{ type: Schema.Types.ObjectId, ref: "thought" }],
 
     // Use built in date method to get current date
-    freinds: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   {
     // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
@@ -45,9 +43,25 @@ userSchema.virtual("friendCounter").get(function () {
   return this.friends.length;
 });
 
-User.create({ user: "TyGandy", email: "ty@tyler.com" });
-
 // Using mongoose.model() to compile a model based on the schema 'bookSchema'
 const User = model("user", userSchema);
+
+User.find({}).exec((err, collection) => {
+  if (collection.length === 0) {
+    User.insertMany(
+      [
+        { user: "ty", email: "ty@ty.com" },
+        { user: "tyler", email: "hithere@ty.com" },
+        { user: "xavier", email: "thanks@what.com" },
+        { user: "allen", email: "al@hello.com" },
+      ],
+      (insertErr) => {
+        if (insertErr) {
+          handleError(insertErr);
+        }
+      }
+    );
+  }
+});
 
 module.exports = User;
