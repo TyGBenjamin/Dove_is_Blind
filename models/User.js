@@ -22,7 +22,7 @@ const userSchema = new Schema(
       ],
     },
     // The type of data is set to 'String' and required is set to false, meaning it will accept null values
-    thoughts: [{ type: Schema.Types.ObjectId, ref: "thought" }],
+    thoughts: [{ type: Schema.Types.ObjectId, ref: "Thought" }],
 
     // Use built in date method to get current date
     friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
@@ -45,23 +45,5 @@ userSchema.virtual("friendCounter").get(function () {
 
 // Using mongoose.model() to compile a model based on the schema 'bookSchema'
 const User = model("user", userSchema);
-
-User.find({}).exec((err, collection) => {
-  if (collection.length === 0) {
-    User.insertMany(
-      [
-        { user: "ty", email: "ty@ty.com" },
-        { user: "tyler", email: "hithere@ty.com" },
-        { user: "xavier", email: "thanks@what.com" },
-        { user: "allen", email: "al@hello.com" },
-      ],
-      (insertErr) => {
-        if (insertErr) {
-          handleError(insertErr);
-        }
-      }
-    );
-  }
-});
 
 module.exports = User;

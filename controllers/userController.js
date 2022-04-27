@@ -3,8 +3,10 @@ const { User, Thought } = require("../models");
 module.exports = {
   // Get all users
   getUsers(req, res) {
-    User.find()
-      .then((users) => res.json(users))
+    User.find({})
+      .then((users) => {
+        res.json(users);
+      })
       .catch((err) => res.status(500).json(err));
   },
   // Get a single user
@@ -20,9 +22,13 @@ module.exports = {
   },
   // create a new user
   createUser(req, res) {
+    console.log(req.body);
     User.create(req.body)
       .then((user) => res.json(user))
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
   // Delete a user and associated apps
   deleteUser(req, res) {
