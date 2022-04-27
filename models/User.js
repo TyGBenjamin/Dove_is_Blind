@@ -1,6 +1,6 @@
 // Require schema and model from mongoose
 
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 // Construct a new instance of the schema class
 const userSchema = new Schema(

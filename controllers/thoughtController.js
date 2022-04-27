@@ -1,7 +1,5 @@
 const { Thought, User } = require("../models");
 
-const { Schema, model, Types } = require("mongoose");
-
 module.exports = {
   // Function to get all of the applications by invoking the find() method with no arguments.
   // Then we return the results as JSON, and catch any errors. Errors are sent as JSON with a message and a 500 status code
