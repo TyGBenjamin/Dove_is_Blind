@@ -25,9 +25,9 @@ then initiate the prompts to be displayed and answered.
 ## Preview
 
 A video for previewing the usage of this application can be found in the following link
-[Click Here for Video Walkthrough]()
+[CLICK HERE for Video Walkthrough](https://www.youtube.com/watch?v=s-WIddl48NA)
 
-![Screenshot of Application]()
+![Screenshot of Application](https://user-images.githubusercontent.com/94323045/166109277-61ed8b57-a8a1-402c-8cca-81a7171b4cdd.jpg)
 
 ## Usage
 
